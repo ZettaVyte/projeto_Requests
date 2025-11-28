@@ -1,5 +1,9 @@
 # Pipeline ETL com Integração à API do GitHub
 
+![Capa](evidencias/evidencia_linguagens_empresas.png)
+
+[linguagens-repositorios-empresas](https://github.com/ZettaVyte/linguagens-repositorios-empresas)
+
 Este projeto consiste em um pipeline de **Engenharia de Dados** desenvolvido em Python, que realiza a extração, transformação e carga (ETL) de dados de repositórios públicos de grandes empresas de tecnologia (Amazon, Netflix, Spotify e Apple).
 
 O objetivo é mapear as linguagens de programação mais utilizadas por essas empresas e armazenar os resultados processados em um novo repositório no GitHub automaticamente.
@@ -63,7 +67,7 @@ O projeto executa as seguintes etapas:
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/ZettaVyte/linguagens-repositorios-empresas
+    git clone https://github.com/ZettaVyte/projeto_Requests
     cd seu-repo
     ```
 
