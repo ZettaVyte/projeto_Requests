@@ -33,11 +33,19 @@ except Exception as e:
 logging.info("Processo de ETL concluído.")
 
 # Salvando os dados
-ling_mais_usadas_amzn.to_csv('dados/linguagens_amzn.csv', index=False)
-ling_mais_usadas_netflix.to_csv('dados/linguagens_netflix.csv', index=False)
-ling_mais_usadas_spotify.to_csv('dados/linguagens_spotify.csv', index=False)
+try:
+    ling_mais_usadas_amzn.to_csv('dados/linguagens_amzn.csv', index=False) # type: ignore
+    ling_mais_usadas_netflix.to_csv('dados/linguagens_netflix.csv', index=False) # type: ignore
+    ling_mais_usadas_spotify.to_csv('dados/linguagens_spotify.csv', index=False) # type: ignore
+    logging.info("Arquivos CSV salvos com sucesso na pasta 'dados/'.")
+except Exception as e:
+    logging.error("Erro ao salvar os arquivos CSV: %s", e)
 
 #Desafio final: faltou extrairmos dados referentes à empresa Apple, que também era uma de nossas demandas. Sendo assim, utilizando as classes criadas até aqui, realize o processo de ETL para extrair os dados das linguagens de programação utilizadas nos repositórios da Apple.
-apple_rep = DadosRepositorios('apple')
-ling_mais_usadas_apple = apple_rep.cria_df_linguagens()
-ling_mais_usadas_apple.to_csv('dados/linguagens_apple.csv', index=False)
+try:
+    apple_rep = DadosRepositorios('apple')
+    ling_mais_usadas_apple = apple_rep.cria_df_linguagens()
+    ling_mais_usadas_apple.to_csv('dados/linguagens_apple.csv', index=False)
+    logging.info("Dados da Apple extraídos e salvos com sucesso: %s linhas.", len(ling_mais_usadas_apple))
+except Exception as e:
+    logging.error("Erro ao processar os dados da Apple: %s", e)

@@ -10,4 +10,4 @@ repos:
 -   repo: https://github.com/kynan/nbstripout
     rev: 0.6.1
     hooks:
-    -   id: nbstripout             # O MAIS IMPORTANTE PARA CIENTISTAS DE DADOS
+    -   id: nbstripout             # O MAIS IMPORTANTE PARA CIENTISTAS DE DADOS - Limpa todas as saídas (outputs) dos notebooks antes de comitar.
