@@ -1,0 +1,13 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: trailing-whitespace    # Remove espaços em branco inúteis no fim da linha
+    -   id: end-of-file-fixer      # Garante que o arquivo termina com uma linha vazia
+    -   id: check-added-large-files # Bloqueia arquivos maiores que 500kb (você configura)
+        args: ['--maxkb=1000']     # Exemplo: Limite de 1MB
+
+-   repo: https://github.com/kynan/nbstripout
+    rev: 0.6.1
+    hooks:
+    -   id: nbstripout             # O MAIS IMPORTANTE PARA CIENTISTAS DE DADOS

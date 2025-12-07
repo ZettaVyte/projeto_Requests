@@ -1,17 +1,38 @@
 from dados_repos import DadosRepositorios
 
-amazon_rep = DadosRepositorios('amzn')
-ling_mais_usadas_amzn = amazon_rep.cria_df_linguagens()
-#print(ling_mais_usadas_amzn)
+import logging
 
-netflix_rep = DadosRepositorios('netflix')
-ling_mais_usadas_netflix = netflix_rep.cria_df_linguagens()
+logging.basicConfig(
+    filename='pipeline_dados.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 
-spotify_rep = DadosRepositorios('spotify')
-ling_mais_usadas_spotify = spotify_rep.cria_df_linguagens()
+logging.info("Iniciando o processo de ETL...")
 
-# Salvando os dados 
+try:
+    logging.info("Extraindo dados dos repositórios da Amazon...")
+    amazon_rep = DadosRepositorios('amzn')
+    ling_mais_usadas_amzn = amazon_rep.cria_df_linguagens()
+    logging.info("Dados da Amazon extraídos com sucesso: %s linhas.", len(ling_mais_usadas_amzn))
 
+    logging.info("Extraindo dados dos repositórios da Netflix...")
+    netflix_rep = DadosRepositorios('netflix')
+    ling_mais_usadas_netflix = netflix_rep.cria_df_linguagens()
+    logging.info("Dados da Netflix extraídos com sucesso: %s linhas.", len(ling_mais_usadas_netflix))
+
+    logging.info("Extraindo dados dos repositórios da Spotify...")
+    spotify_rep = DadosRepositorios('spotify')
+    ling_mais_usadas_spotify = spotify_rep.cria_df_linguagens()
+    logging.info("Dados da Spotify extraídos com sucesso: %s linhas.", len(ling_mais_usadas_spotify))
+
+except Exception as e:
+    logging.error("Erro durante o processo de extração: %s", e)
+
+logging.info("Processo de ETL concluído.")
+
+# Salvando os dados
 ling_mais_usadas_amzn.to_csv('dados/linguagens_amzn.csv', index=False)
 ling_mais_usadas_netflix.to_csv('dados/linguagens_netflix.csv', index=False)
 ling_mais_usadas_spotify.to_csv('dados/linguagens_spotify.csv', index=False)
